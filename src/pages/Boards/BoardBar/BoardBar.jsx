@@ -71,8 +71,8 @@ function BoardBar({ board }) {
         />
       </Box>
       <Box sx= {{ display: 'flex', alignItems: 'center', gap: 2 }}>
-        <Button 
-          variant="outlined" 
+        <Button
+          variant="outlined"
           startIcon={<PersonAddIcon />}
           sx={{
             color: 'white',
@@ -126,7 +126,7 @@ function BoardBar({ board }) {
           <Tooltip title="TranLam">
             <Avatar
               alt="TranLam"
-              src="https://scontent.fhan20-1.fna.fbcdn.net/v/t39.30808-1/480677852_1369986791025714_970050844027118170_n.jpg?stp=cp6_dst-jpg_s100x100_tt6&_nc_cat=109&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeG3MaPCC69u6rp0fuxH9VSy1F7QqR_ekkTUXtCpH96SRM7mIf4vEWyLps49qND6LfmcpV8zp0aUmVgSZlFxutvI&_nc_ohc=znYBY5am4-wQ7kNvgHlaOlo&_nc_oc=AdhoMSLzoKk2KSFEv2sHSwq7sOQaXpQIq9AZW7Ge-MHYU7jriyWEmPR0evUc_Ozly2Dqh4Sl_vWscaWkM9-5mx06&_nc_ad=z-m&_nc_cid=0&_nc_zt=24&_nc_ht=scontent.fhan20-1.fna&_nc_gid=Ao_aa9_BDrFztEGtcI9tt0Q&oh=00_AYA4Kd3iqVBXNyUxhrltMQhTQ30N6Zykae_l_NYdDps7dg&oe=67CCE0A9" 
+              src="https://scontent.fhan20-1.fna.fbcdn.net/v/t39.30808-1/480677852_1369986791025714_970050844027118170_n.jpg?stp=cp6_dst-jpg_s100x100_tt6&_nc_cat=109&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeG3MaPCC69u6rp0fuxH9VSy1F7QqR_ekkTUXtCpH96SRM7mIf4vEWyLps49qND6LfmcpV8zp0aUmVgSZlFxutvI&_nc_ohc=znYBY5am4-wQ7kNvgHlaOlo&_nc_oc=AdhoMSLzoKk2KSFEv2sHSwq7sOQaXpQIq9AZW7Ge-MHYU7jriyWEmPR0evUc_Ozly2Dqh4Sl_vWscaWkM9-5mx06&_nc_ad=z-m&_nc_cid=0&_nc_zt=24&_nc_ht=scontent.fhan20-1.fna&_nc_gid=Ao_aa9_BDrFztEGtcI9tt0Q&oh=00_AYA4Kd3iqVBXNyUxhrltMQhTQ30N6Zykae_l_NYdDps7dg&oe=67CCE0A9"
             />
           </Tooltip>
           <Tooltip title="TienDat">
@@ -168,19 +168,19 @@ function BoardBar({ board }) {
           <Tooltip title="TranLam">
             <Avatar
               alt="TranLam"
-              src="https://scontent.fhan20-1.fna.fbcdn.net/v/t39.30808-1/480677852_1369986791025714_970050844027118170_n.jpg?stp=cp6_dst-jpg_s100x100_tt6&_nc_cat=109&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeG3MaPCC69u6rp0fuxH9VSy1F7QqR_ekkTUXtCpH96SRM7mIf4vEWyLps49qND6LfmcpV8zp0aUmVgSZlFxutvI&_nc_ohc=znYBY5am4-wQ7kNvgHlaOlo&_nc_oc=AdhoMSLzoKk2KSFEv2sHSwq7sOQaXpQIq9AZW7Ge-MHYU7jriyWEmPR0evUc_Ozly2Dqh4Sl_vWscaWkM9-5mx06&_nc_ad=z-m&_nc_cid=0&_nc_zt=24&_nc_ht=scontent.fhan20-1.fna&_nc_gid=Ao_aa9_BDrFztEGtcI9tt0Q&oh=00_AYA4Kd3iqVBXNyUxhrltMQhTQ30N6Zykae_l_NYdDps7dg&oe=67CCE0A9" 
+              src="https://scontent.fhan20-1.fna.fbcdn.net/v/t39.30808-1/480677852_1369986791025714_970050844027118170_n.jpg?stp=cp6_dst-jpg_s100x100_tt6&_nc_cat=109&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeG3MaPCC69u6rp0fuxH9VSy1F7QqR_ekkTUXtCpH96SRM7mIf4vEWyLps49qND6LfmcpV8zp0aUmVgSZlFxutvI&_nc_ohc=znYBY5am4-wQ7kNvgHlaOlo&_nc_oc=AdhoMSLzoKk2KSFEv2sHSwq7sOQaXpQIq9AZW7Ge-MHYU7jriyWEmPR0evUc_Ozly2Dqh4Sl_vWscaWkM9-5mx06&_nc_ad=z-m&_nc_cid=0&_nc_zt=24&_nc_ht=scontent.fhan20-1.fna&_nc_gid=Ao_aa9_BDrFztEGtcI9tt0Q&oh=00_AYA4Kd3iqVBXNyUxhrltMQhTQ30N6Zykae_l_NYdDps7dg&oe=67CCE0A9"
             />
           </Tooltip>
           <Tooltip title="TienDat">
             <Avatar
               alt="TienDat"
-              src="https://scontent.fhan20-1.fna.fbcdn.net/v/t39.30808-1/476341409_1674341143519440_7803849277311711667_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=109&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeF2aTTEBVfS11w6Ypp38ZN3CtuWS9qUFBoK25ZL2pQUGr9cQoHycV6v_sAJQRy-EkX__kGTMp_UVZAvZ0MD-zbY&_nc_ohc=fncwupXj0RMQ7kNvgFDZkYX&_nc_oc=AdjL-guXHmLurU__Y6w8jYZ4v02LWNJ9cndVohd8C_bOfByNz67DI0irM2bf-ePdqPLDqhJx2FFKvY1_HUb7B87-&_nc_zt=24&_nc_ht=scontent.fhan20-1.fna&_nc_gid=AQ1IuAzllQcwLTk-KleRz2L&oh=00_AYAL1Py5a2O7GWq3JXd4AsDg5QO_n17pY9mYNMN8ArY3Xw&oe=67CCD35A" 
+              src="https://scontent.fhan20-1.fna.fbcdn.net/v/t39.30808-1/476341409_1674341143519440_7803849277311711667_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=109&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeF2aTTEBVfS11w6Ypp38ZN3CtuWS9qUFBoK25ZL2pQUGr9cQoHycV6v_sAJQRy-EkX__kGTMp_UVZAvZ0MD-zbY&_nc_ohc=fncwupXj0RMQ7kNvgFDZkYX&_nc_oc=AdjL-guXHmLurU__Y6w8jYZ4v02LWNJ9cndVohd8C_bOfByNz67DI0irM2bf-ePdqPLDqhJx2FFKvY1_HUb7B87-&_nc_zt=24&_nc_ht=scontent.fhan20-1.fna&_nc_gid=AQ1IuAzllQcwLTk-KleRz2L&oh=00_AYAL1Py5a2O7GWq3JXd4AsDg5QO_n17pY9mYNMN8ArY3Xw&oe=67CCD35A"
             />
           </Tooltip>
           <Tooltip title="KienDinh">
             <Avatar
               alt="KienDinh"
-              src="https://scontent.fhan2-4.fna.fbcdn.net/v/t39.30808-1/475464602_1322215802151180_879203392921324708_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=105&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeH0TXQhASz81HdtRcnN6rmZI74tOpD4bWwjvi06kPhtbApih216ncWM1xaJiFLhYBUoCzna6DLAxcB1GGMVyb-u&_nc_ohc=UIzgtUSMpY4Q7kNvgHPUMxk&_nc_oc=AdgN68dfoSBlgN9cfEXqJwDKuf_MJf7-DmQo4J4x4RiSGHjnKqJ2BLXYeg9py6gmEykDGFr96iaNdh8uIrcK7m7X&_nc_zt=24&_nc_ht=scontent.fhan2-4.fna&_nc_gid=ARrDWZyP9cul0KVNHVzdbTx&oh=00_AYDGJrkV7naB3kyVyfSKZvIrTT2Dz9K9UkboU_2mCZV4oQ&oe=67CCED30" 
+              src="https://scontent.fhan2-4.fna.fbcdn.net/v/t39.30808-1/475464602_1322215802151180_879203392921324708_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=105&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeH0TXQhASz81HdtRcnN6rmZI74tOpD4bWwjvi06kPhtbApih216ncWM1xaJiFLhYBUoCzna6DLAxcB1GGMVyb-u&_nc_ohc=UIzgtUSMpY4Q7kNvgHPUMxk&_nc_oc=AdgN68dfoSBlgN9cfEXqJwDKuf_MJf7-DmQo4J4x4RiSGHjnKqJ2BLXYeg9py6gmEykDGFr96iaNdh8uIrcK7m7X&_nc_zt=24&_nc_ht=scontent.fhan2-4.fna&_nc_gid=ARrDWZyP9cul0KVNHVzdbTx&oh=00_AYDGJrkV7naB3kyVyfSKZvIrTT2Dz9K9UkboU_2mCZV4oQ&oe=67CCED30"
             />
           </Tooltip>
 
