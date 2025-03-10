@@ -11,9 +11,9 @@ import {
   DragOverlay,
   defaultDropAnimationSideEffects,
   closestCorners,
-  closestCenter,
+  //closestCenter,
   pointerWithin,
-  rectIntersection,
+  //rectIntersection,
   getFirstCollision
 } from '@dnd-kit/core'
 import { arrayMove } from '@dnd-kit/sortable'
@@ -22,7 +22,6 @@ import { cloneDeep } from 'lodash'
 
 import Column from './ListColumns/Column/Column'
 import Card from './ListColumns/Column/ListCards/Card/Card'
-import { Container } from '@mui/material'
 
 const ACTIVE_DRAG_ITEM_TYPE = {
   COLUMN: 'ACTIVE_DRAG_ITEM_TYPE_COLUMN',
@@ -270,23 +269,30 @@ function BoardContent({ board }) {
       return closestCorners({ ...args })
     }
 
-    // Tìm các điểm giao nhau, va chạm - intersections với con trỏ
+    // Tìm các điểm giao nhau, va chạm, trả về một mảng các va chạm - intersections với con trỏ
     const pointerIntersections = pointerWithin(args)
 
-    // Thuật toán phát hiện va chạm sẽ trả về một mảng các va chạm ở đây
-    const intersections = !!pointerIntersections?.length
-      ? pointerIntersections
-      : rectIntersection
-    let overId = getFirstCollision(intersections, 'id')
+    // Video 37.1: Nếu pointerIntersections là mảng rỗngm, return luôn
+    // Fix bug flickering của thư viện Dnd-kit trong trường hợp sau:
+    // - Kéo thả một cái card có image cover lớn và kéo lên phía trên cùng ra khỏi khu vực kéo thả
+    if (!pointerIntersections?.length) return
+
+    // // Thuật toán phát hiện va chạm sẽ trả về một mảng các va chạm ở đây (không cần bước này nữa - video 37.1)
+    // const intersections = !!pointerIntersections?.length
+    //   ? pointerIntersections
+    //   : rectIntersection(args)
+
+    // Tìm overId đầu tiên trong pointerIntersections ở trên
+    let overId = getFirstCollision(pointerIntersections, 'id')
     // console.log('overId: ', overId)
     if (overId) {
       // Video 37: Đoạn này để fix flickering
-      // Nếu cái over là column thì sẽ tìm tới cardId gần nhất bên trong khu vực va chạm đó dựa vào thuật toán phát hiện va chạm closestCenter hoặc closestCorners đều được( ở đây dùng closestCenter vì thấy mượt hơn)
+      // Nếu cái over là column thì sẽ tìm tới cardId gần nhất bên trong khu vực va chạm đó dựa vào thuật toán phát hiện va chạm closestCenter hoặc closestCorners đều được( ở đây dùng closestCorners vì thấy mượt hơn)
       const checkColumn = orderedColumns.find(column => column._id === overId)
       if (checkColumn) {
         //Ghi đè overId, xử lí luôn card gần nhất chứ không xử lí column(khi kéo sang column khác)
         //console.log('overId before: ', overId)
-        overId = closestCenter({
+        overId = closestCorners({
           ...args,
           droppableContainers: args.droppableContainers.filter(Container => {
             return (Container.id !== overId) && (checkColumn?.cardOrderIds?.includes(Container.id))
