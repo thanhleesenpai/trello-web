@@ -1,0 +1,11 @@
+import axios from 'axios'
+import { API_ROOT } from '~/utils/constants'
+
+
+// Tất cả các function bên dưới sẽ chỉ cẩn request và lấy data từ response luôn, mà không có try catch thay then catch để bắt lỗi, vì ở phía Front end chúng ta không cần thiết làm vậy với mọi request vì nó sẽ gây ra việc dư thừa code catch lỗi quá nhiều
+// Giải pháp Clean code gọn gàng đó là catch lỗi tập trung tại một nơi bằng cách sử dụng Interceptors trong axios(đánh chặn vào giữa response để xử lí logic mà chúng ta muốn)
+export const fetchBoardDetailsAPI = async (boardId) => {
+  const response = await axios.get(`${API_ROOT}/v1/boards/${boardId}`)
+  // Lưu ý: axios sẽ trả kết quả về qua property của nó là data
+  return response.data
+}
