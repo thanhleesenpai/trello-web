@@ -22,4 +22,3 @@ export class MouseSensor extends DndKitMouseSensor {
 export class TouchSensor extends DndKitTouchSensor {
   static activators = [{ eventName: 'onTouchStart', handler }]
 }
-//
