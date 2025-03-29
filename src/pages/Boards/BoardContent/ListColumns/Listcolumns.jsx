@@ -135,4 +135,3 @@ function ListColumns({ columns, createNewColumn, createNewCard, deleteColumnDeta
 }
 
 export default ListColumns
-//
