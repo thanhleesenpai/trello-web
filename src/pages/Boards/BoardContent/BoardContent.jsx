@@ -37,7 +37,7 @@ function BoardContent({
   moveColumns,
   moveCardInTheSameColumn,
   moveCardToDifferentColumn,
-  deleteColumnDetails,
+  deleteColumnDetails
 }) {
   // Nếu dùng pointerSensor mặc định thì phải kết hợp thuộc tính CSS touch-action: none ở những phần tử kéo thả nhưng vẫn bug :))
   //const pointerSensor = useSensor(PointerSensor, { activationConstraint: { distance: 10 } })
