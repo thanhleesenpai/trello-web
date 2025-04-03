@@ -23,8 +23,16 @@ import { CSS } from '@dnd-kit/utilities'
 import TextField from '@mui/material/TextField'
 import CloseIcon from '@mui/icons-material/Close'
 import { useConfirm } from 'material-ui-confirm'
+import { cloneDeep } from 'lodash'
+import { createNewCardAPI, updateBoardDetailsAPI, deleteColumnDetailsAPI } from '~/apis'
+import { updateCurrentActiveBoard, selectCurrentActiveBoard } from '~/redux/activeBoard/activeBoardSlice'
+import { useDispatch, useSelector } from 'react-redux'
 
-function Column({ column, createNewCard, deleteColumnDetails }) {
+
+function Column({ column }) {
+  const dispatch = useDispatch()
+  const board = useSelector(selectCurrentActiveBoard)
+
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: column._id,
     data: { ...column }
@@ -50,7 +58,7 @@ function Column({ column, createNewCard, deleteColumnDetails }) {
   const [openNewCardForm, setOpenNewCardForm] = useState(false)
   const toggleOpenNewCardForm = () => setOpenNewCardForm(!openNewCardForm)
   const [newCardTitle, setNewCardTitle] = useState('')
-  const addNewCard = () => {
+  const addNewCard = async () => {
     if (!newCardTitle) {
       toast.error('Please enter Card Title!', { position: 'bottom-right' })
       return
@@ -62,8 +70,29 @@ function Column({ column, createNewCard, deleteColumnDetails }) {
       columnId: column._id
     }
 
-    // Gọi lên props function createNewCard nằm ở component cha cao nhất (boards/_id.jsx)
-    createNewCard(newCardData)
+    // Gọi API tạo mới Card và làm lại dữ liệu State Board
+    const createdCard = await createNewCardAPI({
+      ...newCardData,
+      boardId: board._id
+    })
+
+    // Cập nhật state board
+    //const newBoard = { ...board }
+    // Tuơng tự hàm createNewColumn nên chỗ này dùng cloneDeep
+    const newBoard = cloneDeep(board)
+    const columnToUpdate = newBoard.columns.find(column => column._id === createdCard.columnId)
+    if (columnToUpdate) {
+      // Nếu column rỗng(chỉ có placeholder card) thì xóa placeholder card đi
+      if (columnToUpdate.cards.some(card => card.FE_PlaceholderCard)) {
+        columnToUpdate.cards = [createdCard]
+        columnToUpdate.cardOrderIds = [createdCard._id]
+      } else {
+        columnToUpdate.cards.push(createdCard)
+        columnToUpdate.cardOrderIds.push(createdCard._id)
+      }
+    }
+    // setBoard(newBoard)
+    dispatch(updateCurrentActiveBoard(newBoard))
 
     // Đóng trạng thái thêm Card mới & Clear Input
     toggleOpenNewCardForm()
@@ -86,8 +115,19 @@ function Column({ column, createNewCard, deleteColumnDetails }) {
       // confirmationKeyword: 'delete',
       // buttonOrder: ['confirm', 'cancel']
     }).then(() => {
-      // Gọi lên props function deleteColumnDetails nằm ở component cha cao nhất (boards/_id.jsx)
-      deleteColumnDetails(column._id)
+      // Update cho chuẩn dữ liệu state Board
+      const newBoard = { ...board }
+      newBoard.columns = newBoard.columns.filter(column => column._id !== column._id)
+      newBoard.columnOrderIds = newBoard.columnOrderIds.filter(_id => _id !== column._id)
+      // setBoard(newBoard)
+      dispatch(updateCurrentActiveBoard(newBoard))
+
+      // Gọi API xóa column
+      deleteColumnDetailsAPI(column._id).then(res => {
+        toast.success(res?.deleteResult)
+      })
+      //ColumnOerderIds cập nhật lại sau khi xóa column
+      updateBoardDetailsAPI(board._id, { columnOrderIds: newBoard.columnOrderIds })
     }).catch(() => {})
   }
 
