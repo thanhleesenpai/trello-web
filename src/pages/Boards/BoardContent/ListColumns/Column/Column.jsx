@@ -117,7 +117,7 @@ function Column({ column }) {
     }).then(() => {
       // Update cho chuẩn dữ liệu state Board
       const newBoard = { ...board }
-      newBoard.columns = newBoard.columns.filter(column => column._id !== column._id)
+      newBoard.columns = newBoard.columns.filter(col => col._id !== column._id)
       newBoard.columnOrderIds = newBoard.columnOrderIds.filter(_id => _id !== column._id)
       // setBoard(newBoard)
       dispatch(updateCurrentActiveBoard(newBoard))
