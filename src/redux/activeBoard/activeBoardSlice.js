@@ -38,7 +38,7 @@ export const activeBoardSlice = createSlice({
     }
   },
   // ExtraReducers: nơi xử lý dữ liệu bất đồng bộ
-  extraReducers: (builder) =>{
+  extraReducers: (builder) => {
     builder.addCase(fetchBoardDetailsAPI.fulfilled, (state, action) => {
       // action.payload là cái response.data trả về ở trên
       let board = action.payload
