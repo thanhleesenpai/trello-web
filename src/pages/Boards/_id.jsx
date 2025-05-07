@@ -4,6 +4,7 @@ import BoardBar from './BoardBar/BoardBar'
 import BoardContent from './BoardContent/BoardContent'
 import { useEffect } from 'react'
 //import { mockData } from '~/apis/mooc-data'
+import PageLoadingSpinner from '~/components/Loading/PageLoadingSpinner'
 
 import {
   updateBoardDetailsAPI,
@@ -11,8 +12,6 @@ import {
   moveCardToDifferentColumnAPI
 } from '~/apis'
 import { cloneDeep } from 'lodash'
-import { Box, Typography } from '@mui/material'
-import CircularProgress from '@mui/material/CircularProgress'
 import {
   fetchBoardDetailsAPI,
   updateCurrentActiveBoard,
@@ -99,18 +98,7 @@ function Board() {
   }
 
   if (!board) {
-    return (
-      <Box sx={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: 2, width: '100vw',
-        height: '100vh'
-      }}>
-        <CircularProgress />
-        <Typography>Loading Board...</Typography>
-      </Box>
-    )
+    return <PageLoadingSpinner caption="Loading Board..."/>
   }
 
   return (

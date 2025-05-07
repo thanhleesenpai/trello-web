@@ -1,5 +1,6 @@
-import authorizeAxiosInstance from '~/utils/authorizeAxios'
+import authorizedAxiosInstance from '~/utils/authorizeAxios'
 import { API_ROOT } from '~/utils/constants'
+import { toast } from 'react-toastify'
 
 
 // Tất cả các function bên dưới sẽ chỉ cẩn request và lấy data từ response luôn, mà không có try catch thay then catch để bắt lỗi, vì ở phía Front end chúng ta không cần thiết làm vậy với mọi request vì nó sẽ gây ra việc dư thừa code catch lỗi quá nhiều
@@ -13,31 +14,44 @@ import { API_ROOT } from '~/utils/constants'
 // }
 
 export const updateBoardDetailsAPI = async (boardId, updateData) => {
-  const response = await authorizeAxiosInstance.put(`${API_ROOT}/v1/boards/${boardId}`, updateData)
+  const response = await authorizedAxiosInstance.put(`${API_ROOT}/v1/boards/${boardId}`, updateData)
   return response.data
 }
 
 export const moveCardToDifferentColumnAPI = async (updateData) => {
-  const response = await authorizeAxiosInstance.put(`${API_ROOT}/v1/boards/supports/moving_card`, updateData)
+  const response = await authorizedAxiosInstance.put(`${API_ROOT}/v1/boards/supports/moving_card`, updateData)
   return response.data
 }
 
 // Columns
 export const createNewColumnAPI = async (newColumnData) => {
-  const response = await authorizeAxiosInstance.post(`${API_ROOT}/v1/columns`, newColumnData)
+  const response = await authorizedAxiosInstance.post(`${API_ROOT}/v1/columns`, newColumnData)
   return response.data
 }
 export const updateColumnDetailsAPI = async (columnId, updateData) => {
-  const response = await authorizeAxiosInstance.put(`${API_ROOT}/v1/columns/${columnId}`, updateData)
+  const response = await authorizedAxiosInstance.put(`${API_ROOT}/v1/columns/${columnId}`, updateData)
   return response.data
 }
 export const deleteColumnDetailsAPI = async (columnId) => {
-  const response = await authorizeAxiosInstance.delete(`${API_ROOT}/v1/columns/${columnId}`)
+  const response = await authorizedAxiosInstance.delete(`${API_ROOT}/v1/columns/${columnId}`)
   return response.data
 }
 
 // Cards
 export const createNewCardAPI = async (newCardData) => {
-  const response = await authorizeAxiosInstance.post(`${API_ROOT}/v1/cards`, newCardData)
+  const response = await authorizedAxiosInstance.post(`${API_ROOT}/v1/cards`, newCardData)
+  return response.data
+}
+
+// Users
+export const registerUserAPI = async (data) => {
+  const response = await authorizedAxiosInstance.post(`${API_ROOT}/v1/users/register`, data)
+  toast.success('Account created successfully! Please check and verify your account before login!', { theme: 'colored' })
+  return response.data
+}
+
+export const verifyUserAPI = async (data) => {
+  const response = await authorizedAxiosInstance.put(`${API_ROOT}/v1/users/verify`, data)
+  toast.success('Account verified successfully! You can login now!', { theme: 'colored' })
   return response.data
 }

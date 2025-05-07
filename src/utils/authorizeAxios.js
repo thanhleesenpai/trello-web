@@ -2,19 +2,19 @@ import axios from 'axios'
 import { toast } from 'react-toastify'
 import { interceptorLoadingElements } from './formatters'
 
-// Khởi tạo một đowis tượng Axios (authorizeAxiosInstance) mục đích để custom và cấu hình chung cho dự án
-let authorizeAxiosInstance = axios.create()
+// Khởi tạo một đowis tượng Axios (authorizedAxiosInstance) mục đích để custom và cấu hình chung cho dự án
+let authorizedAxiosInstance = axios.create()
 
 // Thời gian chờ tối đa của một request: 10p
-authorizeAxiosInstance.defaults.timeout = 10 * 60 * 1000
+authorizedAxiosInstance.defaults.timeout = 10 * 60 * 1000
 // withCredentials: cho phép axios tự động gửi cookie trong mỗi request lên BE (phục vụ việc lưu JWT tokens (refresh & access) vào trong httpOnly cookie của trình duyệt)
-authorizeAxiosInstance.defaults.withCredentials = true
+authorizedAxiosInstance.defaults.withCredentials = true
 
 // Cấu hình Interceptors (bộ đánh chặn vào giữa mọi Request và Response)
 //https://axios-http.com/docs/interceptors
 
 // Add a request interceptor(Can thiệp vào giữa những request API)
-authorizeAxiosInstance.interceptors.request.use((config) => {
+authorizedAxiosInstance.interceptors.request.use((config) => {
   // Kĩ thuật chặn spam click (xem kỹ mô tả ở file formatters chứa function interceptorLoadingElements)
   interceptorLoadingElements(true)
   return config
@@ -24,7 +24,7 @@ authorizeAxiosInstance.interceptors.request.use((config) => {
 })
 
 // Add a response interceptor(Can thiệp vào giữa những response API)
-authorizeAxiosInstance.interceptors.response.use((response) => {
+authorizedAxiosInstance.interceptors.response.use((response) => {
   // Kĩ thuật chặn spam click (xem kỹ mô tả ở file formatters chứa function interceptorLoadingElements)
   interceptorLoadingElements(false)
 
@@ -51,4 +51,4 @@ authorizeAxiosInstance.interceptors.response.use((response) => {
   return Promise.reject(error)
 })
 
-export default authorizeAxiosInstance
+export default authorizedAxiosInstance
