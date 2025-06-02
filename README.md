@@ -5,7 +5,7 @@ A brief description of what this project does and who it's for
 
 # 📝 Trello Clone – Project Management App
 
-A full-stack Trello-like task management application built with **React.js**, **Express.js**, and **MongoDB**.
+A full-stack Trello-like task management application built with **MERN**(**MongoDB**, **Express.js**, **React.js**, and **Node.js**)
 
 ## 🔗 Live Demos
 
@@ -26,7 +26,7 @@ This project is deployed using Render (for backend) and Vercel (for frontend) on
 
 ### 🔸 Frontend
 - 📂 Repository: [trello-web](https://github.com/thanhleesenpai/trello-web)
-- 🌟 Stack: React, Redux Toolkit, Axios, Tailwind CSS
+- 🌟 Stack: React, Redux Toolkit, Axios, Material UI
 
 ### 🔹 Backend
 - 📂 Repository: [trello-api](https://github.com/thanhleesenpai/trello-api)
@@ -53,7 +53,7 @@ This project is deployed using Render (for backend) and Vercel (for frontend) on
 - React + Vite
 - Redux Toolkit
 - Axios
-- TailwindCSS
+- Material UI
 
 **Backend:**
 - Node.js + Express
