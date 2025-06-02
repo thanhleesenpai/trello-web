@@ -19,22 +19,33 @@ import { store } from './redux/store'
 // Cấu hình react-router-dom với BrowserRouter
 import { BrowserRouter } from 'react-router-dom'
 
+// Cấu hình Redux Persist
+import { PersistGate } from 'redux-persist/integration/react'
+import { persistStore } from 'redux-persist'
+const persistor = persistStore(store)
+
+// Inject store vào file authorizeAxios.js để có thể sử dụng store trong axios interceptors
+import { injectStore } from '~/utils/authorizeAxios'
+injectStore(store) // Inject store vào authorizeAxios để có thể sử dụng trong axios interceptors
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter basename='/'>
     <Provider store={store}>
-      <CssVarsProvider theme={theme}>
-        <ConfirmProvider defaultOptions={{
-          allowClose: false,
-          dialogProps: { maxWidth: 'xs' },
-          confirmationButtonProps: { variant: 'outlined', color: 'error' },
-          cancellationButtonProps: { variant: 'inherit' },
-          buttonOrder: ['confirm', 'cancel']
-        }}>
-          <CssBaseline />
-          <App />
-          <ToastContainer position="bottom-left" theme="colored" />
-        </ConfirmProvider>
-      </CssVarsProvider>
+      <PersistGate persistor={persistor}>
+        <CssVarsProvider theme={theme}>
+          <ConfirmProvider defaultOptions={{
+            allowClose: false,
+            dialogProps: { maxWidth: 'xs' },
+            confirmationButtonProps: { variant: 'outlined', color: 'error' },
+            cancellationButtonProps: { variant: 'inherit' },
+            buttonOrder: ['confirm', 'cancel']
+          }}>
+            <CssBaseline />
+            <App />
+            <ToastContainer position="bottom-left" theme="colored" />
+          </ConfirmProvider>
+        </CssVarsProvider>
+      </PersistGate>
     </Provider>
   </BrowserRouter>
 )
